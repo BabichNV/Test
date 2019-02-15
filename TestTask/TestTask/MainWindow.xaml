@@ -1,0 +1,41 @@
+﻿<Window x:Class="TestTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TestTask.ViewModel"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:TestTask"
+        Title="Тестовое задание" Height="540.847" Width="953.473">
+    <DockPanel DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
+        <Grid Margin="0,0,0.4,-2.6" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="26*"/>
+            </Grid.RowDefinitions>
+            <lvc:CartesianChart Series="{Binding Series1}" x:Name="chart" LegendLocation="Left" Margin="10,10,270.8,95.6" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Grid.RowSpan="2">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="t">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator IsEnabled="True" Step="5"></lvc:Separator>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="F(t)">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator IsEnabled="True" Step="10"></lvc:Separator>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+            <Button x:Name="calculateButton" Margin="0,0,71.8,25.6" Command="{Binding CalculateCommand}" Grid.Row="1" HorizontalAlignment="Right" Width="116" Height="58" VerticalAlignment="Bottom">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Сравнить" VerticalAlignment="Top"/>
+            </Button>
+            <Button x:Name="generateButton" Margin="0,0,502.8,26.6" Command="{Binding GenerateCommand}" Height="56" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="121" Grid.Row="1">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Height="38" TextAlignment="Center" Text="Сгенерировать ряды"/>
+            </Button>
+            <ListBox HorizontalAlignment="Right" Width="236" Margin="0,0,9.8,95.6" ItemsSource="{Binding Report, Mode=OneWay}" Height="399" VerticalAlignment="Bottom" Grid.RowSpan="2"/>
+        </Grid>
+    </DockPanel>
+
+
+</Window>
